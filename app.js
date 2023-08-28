@@ -69,7 +69,7 @@ app.post("/get-data", async (req, res) => {
     });
 
     const response = completion.data.choices[0].message;
-    console.log(response.content);
+    // console.log(response.content);
     var result = response.content;
     
     voice
