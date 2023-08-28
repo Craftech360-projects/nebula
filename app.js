@@ -70,7 +70,8 @@ app.post("/get-data", async (req, res) => {
 
     const response = completion.data.choices[0].message;
     console.log(response.content);
-    let result = response.content;
+    var result = response.content;
+    
     voice
       .textToSpeechStream(labApiKey, voiceID, result, 0.2, 0.7)
       .then((res) => {
@@ -84,6 +85,8 @@ app.post("/get-data", async (req, res) => {
         writeStream.on('finish', () => {
           console.log('Speech generated successfully.');
           io.emit('play', num)
+          console.log(result);
+          io.emit('data', result)
           return
         });
       })

@@ -1,80 +1,113 @@
-/* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-}
-body{
+body {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background: #1a0e46;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: aliceblue;
+  font-family: 'Poppins', sans-serif;
 }
 
-
-/* Start Button Style */
-.start-button {
-  border-radius: 1rem;
-  font-weight: bolder;
-  margin: 50px;
-  width: 10rem;
-  background-color: #4CAF50; /* Green background color */
-  color: white; /* Text color */
-  padding: 10px 20px; /* Padding around the button */
-  border: none; /* No border */
-  cursor: pointer; /* Cursor style */
-  font-size: 16px; /* Font size */
+#stop {
   position: absolute;
-  z-index: 2000;
+  bottom: 10%;
 }
 
-/* Stop Button Style */
-.stop-button {
-  border-radius: 1rem;
-  font-weight: bolder;
-  width: 10rem;
-  background-color: #FF0000; /* Red background color */
-  color: white; /* Text color */
-  padding: 10px 20px; /* Padding around the button */
-  border: none; /* No border */
-  cursor: pointer; /* Cursor style */
-  font-size: 16px; /* Font size */
-  left: 30%;
-  position: absolute;
-  z-index: 2000;
-}
-
-#voiceData{
-  color: aliceblue;
-  text-align: left;
-  font-size: 1rem;
-  position: absolute;
-  scroll-behavior: smooth;
-  bottom: 20px;
-  width: 80rem;
-  padding: 100px;
-  font-weight: bolder;
-  background: transparent;
+#voiceData {
+  width: 50%;
+  height: auto;
+  font-size: 16px;
   border: none;
+  background-color: transparent;
   position: absolute;
-  z-index: 2000;
+  top: 20%;
+  left: 20%;
 }
 
-video{
+#voiceData2 {
+  width: 50%;
+  height: auto;
+  font-size: 26px;
+  border: none;
+  background-color: transparent;
   position: absolute;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
+  bottom: 25%;
+  left: 20%;
 }
 
-h1{
-  position: absolute;
-  z-index: 2000;
-  top: 0;
-  color: aliceblue;
+.listening-animation {
+  letter-spacing: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  animation: listening-animation 1.5s infinite;
+}
+
+.dots {
+  opacity: 0;
+  animation: dot-animation 1s infinite;
+}
+
+@keyframes listening-animation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes dot-animation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Keyframes Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spinner */
+.spinner {
+  margin-right: 10rem;
+  --spinner-color: black;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.spinner--dotted {
+  width: 5rem;
+  border: 0.5rem dotted var(--spinner-color);
+  display: block;
+  animation-duration: 5s;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+  
+  /* Adjust other styles as needed for mobile and tablet screens */
+  
+  #voiceData,
+  #voiceData2 {
+    width: 80%; /* Adjust input width for better fit on small screens */
+    left: 10%;
+    font-size: 12px; 
+  }
 }
