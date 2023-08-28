@@ -4,10 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "build:digitalocean": "npm install --production=false && npm run build && npm ci"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "npm": "~1.0.20"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "elevenlabs-node": "^1.1.0",
     "execution-time": "^1.4.1",
     "express": "^4.17.1",
+    "gatsby": "^5.12.3",
     "latest": "^0.2.0",
     "node-aplay": "^1.0.3",
     "nodemailer": "^6.9.1",
@@ -27,5 +30,4 @@
     "play-sound": "^1.1.5",
     "socket.io": "^2.3.0"
   }
-  
 }
