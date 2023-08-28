@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,4 +27,5 @@
     "play-sound": "^1.1.5",
     "socket.io": "^2.3.0"
   }
+  
 }
