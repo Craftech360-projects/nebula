@@ -7,10 +7,6 @@
     "start": "node app",
     "build:digitalocean": "npm install --production=false && npm run build && npm ci"
   },
-  "engines": {
-    "node": "16.x",
-    "npm": "~1.0.20"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
