@@ -21,6 +21,10 @@ socket.on('data', (e) => {
   // document.getElementById("voiceData").value = '';
   document.getElementById("voiceData2").innerText = e;
 })
+
+socket.on('stop', (e) => {
+  location.reload()
+})
 audio.onended = () => {
   location.reload()
 };
@@ -35,7 +39,7 @@ const sendPrompt = async (prompt) => {
   let data = {
     prompt: prompt
   }
-  fetch('http://localhost:4000/get-data', {
+  fetch('https://seashell-app-34t7g.ondigitalocean.app/get-data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
