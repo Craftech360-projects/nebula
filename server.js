@@ -50,6 +50,21 @@ io.on("connection", function (socket) {
   console.log("connceted");
 });
 
+const { exec } = require('child_process');
+
+function runPythonScript(message) {
+  // Replace 'python' with 'python3' or the path to your Python executable if needed
+  // 'myscript.py' is the name of your Python file
+  exec(`python tts.py "${message}"`, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Error executing Python script:', error);
+      return;
+    }
+    console.log('Python script executed successfully');
+    console.log('Output from Python:', stdout);
+  });
+}
+
 app.post("/get-data", async (req, res) => {
   console.log(req.body.prompt);
   try {
@@ -70,36 +85,43 @@ app.post("/get-data", async (req, res) => {
     const response = completion.data.choices[0].message;
     console.log(response.content);
     var result = response.content;
-
-    voice
-      .textToSpeechStream(labApiKey, voiceID, result, 0.2, 0.7)
-      .then((res) => {
-        var fileName = "";
-        var num = "";
-        num = Date.now();
-        fileName = `./public/videos/${num}.mp3`;
-        const writeStream = fs.createWriteStream(fileName);
-        res.pipe(writeStream);
-        writeStream.on("finish", () => {
-          console.log("Speech generated successfully.");
-          io.emit("play", num);
-          console.log(result);
-          io.emit("data", result);
-          return;
-        });
-      })
-      .catch((error) => {
-        console.error("Error during textToSpeechStream:", error);
-        if (error.response) {
-          console.error("API Error Response:", error.response.data);
-        } else if (error.request) {
-          console.error("No API Response:", error.request);
-        } else {
-          console.error("Error:", error.message);
-        }
-      });
+    console.log("Speech generated successfully.");
+    // socket.emit("play", num);
+    console.log(result);
+    io.emit("data", result);
+    runPythonScript(result);
+    // voice
+    //   .textToSpeechStream(labApiKey, voiceID, result, 0.2, 0.7)
+    //   .then((res) => {
+    //     var fileName = "";
+    //     var num = "";
+    //     num = Date.now();
+    //     fileName = `./public/videos/${num}.mp3`;
+    //     const writeStream = fs.createWriteStream(fileName);
+    //     res.pipe(writeStream);
+    //     writeStream.on("finish", () => {
+          // console.log("Speech generated successfully.");
+          // socket.emit("play", num);
+          // console.log(result);
+          // socket.emit("data", result);
+    //       return;
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error during textToSpeechStream:", error);
+    //     if (error.response) {
+    //       console.error("API Error Response:", error.response.data);
+    //     } else if (error.request) {
+    //       console.error("No API Response:", error.request);
+    //     } else {
+    //       console.error("Error:", error.message);
+    //     }
+    //   });
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+// Example usage
+const messageToSend = `Hello, this is a test using the Microsoft Zira voice.`;
+runPythonScript(messageToSend);
