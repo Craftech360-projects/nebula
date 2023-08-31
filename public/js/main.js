@@ -35,7 +35,7 @@ const sendPrompt = async (prompt) => {
   let data = {
     prompt: prompt
   }
-  fetch('https://starfish-app-qvwae.ondigitalocean.app/get-data', {
+  fetch('https://seashell-app-34t7g.ondigitalocean.app/get-data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
