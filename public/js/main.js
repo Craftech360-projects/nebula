@@ -16,7 +16,7 @@ socket.on('play', (e) => {
 })
 
 socket.on('data', (e) => {
-  console.log(e);
+  console.log(e,'answer');
   document.getElementById("container").style.display = 'none'
   // document.getElementById("voiceData").value = '';
   document.getElementById("voiceData2").innerText = e;
@@ -39,7 +39,7 @@ const sendPrompt = async (prompt) => {
   let data = {
     prompt: prompt
   }
-  fetch('http://localhost:4000/get-data', {
+  fetch('/get-data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
