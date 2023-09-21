@@ -39,8 +39,26 @@ app.use((req, res, next) => {
   next();
 });
 
+const { exec } = require('child_process');
+
+function runPythonScript(message) {
+  // Replace 'python' with 'python3' or the path to your Python executable if needed
+  // 'myscript.py' is the name of your Python file
+  exec(`python tts.py "${message}"`, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Error executing Python script:', error);
+      return;
+    }
+    console.log('Python script executed successfully');
+    console.log('Output from Python:', stdout);
+  });
+}
 app.get("/", function (req, res) {
   res.render("main.ejs");
+});
+
+app.get("/test", function (req, res) {
+  res.render("test.ejs");
 });
 
 io.on("connection", function (socket) {
@@ -69,11 +87,31 @@ app.post("/get-data", async (req, res) => {
     var result = response.content;
     console.log("Speech generated successfully.");
     // socket.emit("play", num);
-    console.log(result);
     io.emit("data", result);
-    say.speak(result);
+    generateSpeech(result);
+    // say.speak(result);
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
+const axios = require('axios');
+
+function generateSpeech(message) {
+  const apiUrl = 'http://192.168.1.217:5000/generate_speech';
+
+  // Make the POST request to the API
+  axios
+    .post(apiUrl, { message })
+    .then((response) => {
+      console.log('Response from Flask API:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+// Call the function with your message
+// const message = "Hi sac, how are you doing today!";
+// generateSpeech(message);
