@@ -4,30 +4,68 @@
 <head>
   <meta charset="utf-8">
   <title>Nebula</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <link rel="stylesheet" href="../public/css/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="/socket.io/socket.io.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
-
 <body>
-
-  <audio id="myAudio" src=""></audio>
-  <div  style="display: none;" id="container" class="container" role="status" id="loading">
+  <img src="../public/logo.png" id="img" alt="">
+  <audio id="play" src=""></audio>
+  <section id="questions"style="display: none;" >
+    <div id="1">What is D3 and what does it stand for?</div>
+    <div id="2">What is the theme of D3 this year?</div>
+    <div id="7">What is Decode? When is the 24-hour hackathon? Is the winning team presenting this year?</div>
+    <div id="3">What are the D3 pre-events? Any new pre-event this year?</div>
+    <div id="4">When is the week of D3? What can I expect each day?</div>
+    <div id="6">Can I attend D3 from my home city? Which are the virtual venue locations? I would love toattend one.</div>
+    <div id="5">Who would be invited to D3 conference?</div>
+    <div id="8">What is Code Pursuit?</div>
+    <div id="11">Which are the D3 talk segments? Can I attend it from anywhere in the world? How do Iregister?</div>
+    <div id="9">What is Ascend with D3?</div>
+    <div id="12">I'm not a developer. Can I participate in the GenAI artistry challenge?</div>
+    <div id="13">Super stoked about the very first D3 ask me anything session. Can I attend it from anywherein the world? How do I register?</div>
+    <div id="10">What are some of the exhibits that will be showcased at the D3 expo this year?</div>
+    <div id="14">Who are the external keynote speakers this year?</div>
+    <div id="15">How do I nominate a s/hero technologist from my team for the dreamer, developer,disruptor award?</div>
+    <div id="16">Who are the internal speakers this year?</div>
+    <div id="17">How can I personally meet the experts or senior leaders at D3?</div>
+    <div id="18">I came to know that I’m a dreamer, developer, disruptor this year. How can I be part of thedreamer, developer, disruptor lounge at the conference?</div>
+  </section>
+  <button   id="first" onclick="showQuestions()"class="">KNOW MORE</button>
+    <!-- animate__animated animate__pulse animate__infinite -->
+  <button    id="second" onclick="startRecording()"  class="">CHAT WITH LILY</button>
+  <div style="display: none;"  class="container" role="status" id="loading">
     <span class="spinner spinner--dotted"></span>
-</div>
-  <h1 id="first" onclick="startRecording()" class="animate__animated animate__pulse animate__infinite	infinite">Let's Start</h1>
-  <div class="listening-animation" id="listen" style="display: none;">
-    Listening<span class="dots">...</span>
-</div>
-  <h3 id="voiceData" ></h3>
-  <h3 id="voiceData2" ></h3>
-  <h1 id="stop" onclick="stopRecording()"style="display: none;">Stop</h1>
   </div>
+<section id="main"  style="display: none;">
+  
+  <div id="listen" >
+
+    <div id="animation">
+      <div style="text-align: center;padding: 20px;" id="load">
+        <h1>Listening...</h1>
+        <img id="mic" src="../public/mic.gif" alt="">
+      </div>
+    </div>
+
+    <div id="textbox">
+      <div id="voiceData"></div>
+      <div id="voiceData2"></div>
+    </div>
+    
+  </div>
+
+  <div id="sub">
+    <button id="stop" onclick="stopRecording()" class="animate__animated animate__backInRight">Get Answer</button>
+    <button id="clear" onclick="clearText()" class="animate__animated animate__backInRight">Clear</button>
+    <button id="home" onclick="gotToHome()" class="animate__animated animate__backInRight">Home</button>
+    <button id="ask" onclick="clearText()" class="animate__animated animate__backInRight">Ask Again</button>
+  </div>
+</section>
+
   <!-- LANGUAGES -->
   <script src="../public/js/languages.js"></script>
   <!-- SCRIPT -->

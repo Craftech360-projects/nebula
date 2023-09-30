@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-const PORT = 4000;
+const PORT = 3001;
 const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -57,12 +57,18 @@ app.get("/", function (req, res) {
   res.render("main.ejs");
 });
 
-app.get("/test", function (req, res) {
-  res.render("test.ejs");
+app.get("/show", function (req, res) {
+  res.render("show.ejs");
 });
 
 io.on("connection", function (socket) {
   console.log("connceted");
+
+  socket.on('toVoice',(e)=>{
+    generateSpeech(e)
+    io.emit("data", e);
+    io.emit("play");
+  })
 });
 
 app.post("/get-data", async (req, res) => {
@@ -88,6 +94,7 @@ app.post("/get-data", async (req, res) => {
     console.log("Speech generated successfully.");
     // socket.emit("play", num);
     io.emit("data", result);
+    io.emit("play");
     generateSpeech(result);
     // say.speak(result);
   } catch (error) {
@@ -99,13 +106,14 @@ app.post("/get-data", async (req, res) => {
 const axios = require('axios');
 
 function generateSpeech(message) {
-  const apiUrl = 'http://192.168.1.217:5000/generate_speech';
+  const apiUrl = 'http://192.168.1.168:5000/generate_speech';
 
   // Make the POST request to the API
   axios
     .post(apiUrl, { message })
     .then((response) => {
       console.log('Response from Flask API:', response.data);
+      io.emit('stop')
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -113,5 +121,5 @@ function generateSpeech(message) {
 }
 
 // Call the function with your message
-// const message = "Hi sac, how are you doing today!";
-// generateSpeech(message);
+const message = "Hi sac, how are you doing today!";
+generateSpeech(message);

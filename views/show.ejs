@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>SHOW</title>
+    <link rel="stylesheet" href="../public/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+    video{
+        width: 100vw;
+        height: 100vh;
+    }
+    img{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+    }
+    #btn{
+        position: absolute;
+        z-index: 200;
+    }
+  </style>
+  <body>
+    <!-- <button onclick="playVid()" type="button">Play Video</button><br>
+<button id="btn" onclick="pauseVid()" type="button">Pause Video</button> -->
+
+    <video id="myVideo" width="320" height="176" muted loop autoplay>
+      <source src="../public/bg.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+    <img id="img"  src="../public/image.png" alt="">
+    <script>
+      const socket = io();
+      let vid = document.getElementById("myVideo");
+      let img = document.getElementById("img");
+
+      socket.on('play',()=>{
+        // vid.play();
+        console.log('play');
+        img.style.display = 'none'
+      })
+      socket.on('stop',()=>{
+        // vid.pause();
+        console.log('stop');
+        img.style.display = 'block'
+      })
+      function playVid() {
+        vid.play();
+      }
+
+      function pauseVid() {
+        vid.pause();
+      }
+    </script>
+  </body>
+</html>
