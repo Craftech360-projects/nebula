@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
+  <button id="back"  onclick="gotToHome()" style="display: none;" >BACK</button>
   <img src="../public/logo.png" id="img" alt="">
   <audio id="play" src=""></audio>
   <section id="questions"style="display: none;" >
@@ -34,13 +35,13 @@
     <div id="17">How can I personally meet the experts or senior leaders at D3?</div>
     <div id="18">I came to know that I’m a dreamer, developer, disruptor this year. How can I be part of thedreamer, developer, disruptor lounge at the conference?</div>
   </section>
-  <button   id="first" onclick="showQuestions()"class="">KNOW MORE</button>
+  <button  id="first" onclick="showQuestions()"class="">KNOW MORE</button>
     <!-- animate__animated animate__pulse animate__infinite -->
   <button    id="second" onclick="startRecording()"  class="">CHAT WITH LILY</button>
   <div style="display: none;"  class="container" role="status" id="loading">
     <span class="spinner spinner--dotted"></span>
   </div>
-<section id="main"  style="display: none;">
+<section id="main" style="display: none;" >
   
   <div id="listen" >
 
@@ -52,8 +53,10 @@
     </div>
 
     <div id="textbox">
-      <div id="voiceData"></div>
+      <div id="border">
+        <div id="voiceData"></div>
       <div id="voiceData2"></div>
+      </div>
     </div>
     
   </div>

@@ -135,6 +135,7 @@ function clearText() {
 function showQuestions() {
   document.getElementById("first").style.display = 'none'
   document.getElementById("second").style.display = 'none'
+  document.getElementById("back").style.display = 'block'
   document.getElementById("questions").style.display = 'flex'
 }
 
@@ -154,7 +155,7 @@ async function getAnswerApi(data) {
     let updatedString = data.question.replace(/USD/g, "UST");
     let body = {
       model: environment.supabase.model,
-      question: ` ${updatedString}, give me a short answer`,
+      question: `${updatedString}, give me a short answer`,
       temparature:
         environment.supabase.temperature,
       max_tokens: environment.supabase.max_tokens,
@@ -196,7 +197,9 @@ function changeColor(divId) {
       var a = document.getElementById('play');
       a.src = `../public/ans/${div.id}.mp3`
       a.play()
+      socket.emit("playAudio");
       a.addEventListener('ended', () => {
+        socket.emit("stopAudio");
         // This function will be called when the audio playback ends
         console.log('Audio playback ended');
         const divs = document.querySelectorAll("#questions div");

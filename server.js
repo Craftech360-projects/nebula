@@ -69,6 +69,13 @@ io.on("connection", function (socket) {
     io.emit("data", e);
     io.emit("play");
   })
+
+  socket.on('playAudio',()=>{
+    io.emit("play");
+  })
+  socket.on('stopAudio',()=>{
+    io.emit("stop");
+  })
 });
 
 app.post("/get-data", async (req, res) => {
