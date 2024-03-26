@@ -17,6 +17,7 @@ body {
   /* background: linear-gradient(to right, #fff, #98d8d1); */
 }
 
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -175,7 +176,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 90%;
+width: 90%;
 }
 
 #questions > div {
@@ -185,39 +186,46 @@ body {
   align-items: center;
   text-align: center;
   height: 120px;
-  width: calc(26.33% - 20px);
-  margin: 10px;
+  width: calc(26.33% - 20px); 
+  margin: 10px; 
   background-image: url("../buttonbg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
 }
 
 #questions > div > span {
   width: 100%; /* Allow the span to take up full width of the parent div */
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: nowrap; 
+  overflow: hidden; 
   text-overflow: ellipsis; /* Show ellipsis (...) if text overflows */
 }
 #questions > div > p {
-  width: 400px;
-  font-family: "lexend";
+width: 400px;
+font-family: "lexend";
+
+
 }
 #questions2 > div > p {
   width: 400px;
   font-family: "lexend";
-}
 
-#nextPage {
+  }
+
+#nextPage{
   position: absolute;
   height: 100%;
   width: 100%;
   top: 900px;
   left: 1100px;
   color: #f05353;
+
+
 }
 
-#nextPage > div {
+
+#nextPage > div{
   /* font-weight: bold; */
   display: flex;
   justify-content: center;
@@ -228,57 +236,71 @@ body {
   background-image: url("../next.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 80%;
+  background-size: 80%; 
   padding: 10px;
   font-size: 24px;
   font-weight: bold;
 }
 
+
 #questions2 {
-  display: grid;
-  grid-template-columns: repeat(3, calc(26.33% - 20px)); /* Three columns */
-  grid-gap: 10px; /* This will create space between grid items */
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   width: 90%;
 }
 
 #questions2 > div {
+  /* font-weight: bold; */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   height: 120px;
+  width: calc(26.33% - 20px); 
+  margin: 10px; 
   background-image: url("../buttonbg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-#questions2 > div:nth-child(12) {
+
+#questions2 > div > span {
+  width: 300px;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+#backPage{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 900px;
+  left: 1100px;
+  color: #f05353;
+
+}
+#backPage > div{
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 120px;
-  background-image: url("../back.png");
+  height: 120px; 
+  width: calc(30% - 40px); 
+  background-image: url("../next.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 80%; 
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-#questions2 > div:nth-child(12) {
- color: #f05353;
- font-family: "lexend";
-}
 
-#questions2 > div > p {
-  margin: 0; 
-}
 
-#questions2 > .goback > #26 {
-  /* Styles for ID 26 if needed */
-}
 
 /* Create an even row with 2 divs */
 /* #questions > div:nth-child(3n + 1), 
