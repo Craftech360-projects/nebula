@@ -185,25 +185,26 @@ function changeColor(divId) {
       socket.emit("playAudio");
       a.addEventListener("ended", () => {
         socket.emit("stopAudio");
-        // This function will be called when the audio playback ends
         console.log("Audio playback ended");
         const divs = document.querySelectorAll("#questions div");
         divs.forEach((div) => {
-          // Reset the background color of all divs to white
-          // div.style.backgroundColor = "white";
           div.style.color = "white";
+          // Reset the background image to the original for all divs
+          div.style.backgroundImage = 'url("../public/buttonbg.png")';
         });
-        // You can perform additional actions here if needed
       });
-      // div.style.backgroundColor = "#0097ac";
-      div.style.color = "black";
+      div.style.color = "#f05353";
+      // Set a new background image for the clicked div
+      div.style.backgroundImage = 'url("../public/replace.png")';
+       // If the server root is the public folder
     } else {
-      // Reset the background color of other divs to white
-      // div.style.backgroundColor = "white";
       div.style.color = "white";
+      // Optionally reset the background image for non-clicked divs, if they might have changed previously
+      div.style.backgroundImage = 'url("../public/buttonbg.png")';
     }
   });
 }
+
 
 // Add click event listeners to each div
 const divs = document.querySelectorAll("#questions div");
@@ -216,11 +217,7 @@ divs.forEach((div) => {
 function changeColor2(divId) {
   // Skip changing color for div with id "28"
   if (divId === "28") {
-    // You can still perform other actions for div "28" here if needed
-    // For example, playing an audio or something else
-    // ...
-
-    // But don't change its text color
+ 
     return;
   }
 
@@ -238,20 +235,20 @@ function changeColor2(divId) {
         console.log("Audio playback ended");
         // Reset the text color of all divs except div "28" to white after the audio ends
         divs.forEach((div) => {
-          if (div.id !== "28") {
-            div.style.color = "white";
-          }
+          div.style.color = "white";
+          // Reset the background image to the original for all divs
+          div.style.backgroundImage = 'url("../public/buttonbg.png")';
         });
       });
-      // Change the text color to black only if it's not div "28"
-      if (div.id !== "28") {
-        div.style.color = "black";
-      }
+      div.style.color = "#f05353";
+      // Set a new background image for the clicked div
+      div.style.backgroundImage = 'url("../public/replace.png")';
+       // If the server root is the public folder
     } else {
-      // Reset the text color of other divs to white except for div "28"
-      if (div.id !== "28") {
-        div.style.color = "white";
-      }
+      div.style.color = "white";
+      // Optionally reset the background image for non-clicked divs, if they might have changed previously
+      div.style.backgroundImage = 'url("../public/buttonbg.png")';
+    
     }
   });
 }

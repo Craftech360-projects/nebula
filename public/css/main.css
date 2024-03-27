@@ -190,7 +190,7 @@ body {
   background-image: url("../buttonbg.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #questions > div > span {
@@ -252,7 +252,7 @@ body {
   background-image: url("../buttonbg.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 #questions2 > div:nth-child(12) {
@@ -278,6 +278,32 @@ body {
 
 #questions2 > .goback > #26 {
   /* Styles for ID 26 if needed */
+}
+
+#goBack{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 670px;
+  left: 1105px;
+  color: #f05353;
+
+}
+#goBack > div {
+  /* font-weight: bold; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 120px; /* Decreased height */
+  width: calc(30% - 40px); /* Decreased width */
+  background-image: url("../next.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 /* Create an even row with 2 divs */
